@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.gradle/
+**/build/
+local.properties
+*.jks
+*.keystore
+*.p12
+.env*
+!*.example
+signing-private/
