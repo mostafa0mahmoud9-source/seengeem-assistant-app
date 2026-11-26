@@ -1,5 +1,5 @@
 plugins { id 'com.android.application' }
-def releaseVersion = providers.gradleProperty('releaseVersion').getOrElse('1.1.0')
+def releaseVersion = providers.gradleProperty('releaseVersion').getOrElse('1.1.1')
 def parts = releaseVersion.tokenize('.').collect { it.toInteger() }
 def signingPath = System.getenv('ANDROID_KEYSTORE_PATH')
 android {

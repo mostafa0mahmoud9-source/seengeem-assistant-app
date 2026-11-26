@@ -3,7 +3,7 @@ import android.app.*;import android.content.*;import android.graphics.Color;impo
 public final class MainActivity extends Activity {
  static final String HOME="https://seengeem-eg.com/seengeem-assistant/"; WebView web;Button update;TextView status;UpdateManager updater;
  @Override public void onCreate(Bundle saved){super.onCreate(saved);getWindow().setStatusBarColor(Color.rgb(51,34,103));
- LinearLayout root=new LinearLayout(this);root.setOrientation(1);root.setBackgroundColor(Color.rgb(245,244,249));
+ LinearLayout root=new LinearLayout(this);root.setOnApplyWindowInsetsListener((view,insets)->{view.setPadding(0,insets.getSystemWindowInsetTop(),0,insets.getSystemWindowInsetBottom());return insets;});root.setOrientation(1);root.setBackgroundColor(Color.rgb(245,244,249));
  LinearLayout bar=new LinearLayout(this);bar.setPadding(8,3,8,3);bar.setGravity(Gravity.CENTER_VERTICAL);Button home=new Button(this);home.setText("الرئيسية");home.setOnClickListener(v->web.loadUrl(HOME));Button reload=new Button(this);reload.setText("تحديث");reload.setOnClickListener(v->web.reload());update=new Button(this);update.setText("الإصدار "+BuildConfig.VERSION_NAME);update.setTextSize(11);update.setOnClickListener(v->{if(updater.ready())install();else updater.check(true);});bar.addView(home);bar.addView(reload);bar.addView(update,new LinearLayout.LayoutParams(0,-2,1));root.addView(bar);
  status=new TextView(this);status.setPadding(16,2,16,2);status.setTextSize(12);status.setText("بيانات مباشرة من المنصة عند الاتصال بالإنترنت");root.addView(status);
  web=new WebView(this);root.addView(web,new LinearLayout.LayoutParams(-1,0,1));setContentView(root);
